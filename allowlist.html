@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MerkleTree AllowList</title>
+    <script src="https://cdn.jsdelivr.net/npm/merkletreejs@latest/merkletree.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/keccak256@latest/keccak256.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    const addresses = ["0xeca49Ec419496aedCdfC9ef5de7Ebe59b137e13F"]
+    const leaves = addresses.map(x => keccak256(x))
+    const tree = new MerkleTree(leaves, keccak256, { sortPairs: true })
+    const buf2hex = x => '0x' + x.toString('hex')
+
+    console.log(buf2hex(tree.getRoot()))
+</script>
+</body>
+</html>
